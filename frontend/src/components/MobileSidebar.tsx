@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { Link, useLocation } from "react-router-dom";
-import { cn } from "../lib/utils";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -67,12 +66,11 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                     <motion.div
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
-                      className={cn(
-                        "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300",
-                        pathname === item.to
+                      className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300
+                        ${pathname === item.to
                           ? "bg-linear-to-r from-accent/20 to-purple-600/20 border border-accent/40 text-white"
-                          : "text-gray-400 hover:text-white hover:bg-accent/10"
-                      )}
+                          : "text-gray-400 hover:text-white hover:bg-accent/10"}
+                      `}
                     >
                       <Icon icon={item.icon} className="text-xl" />
                       <span className="font-medium">{item.label}</span>

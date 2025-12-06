@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
-import { cn } from "../lib/utils";
 
 interface SidebarProps {
   collapsed: boolean;
@@ -25,10 +24,9 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
       initial={{ x: -100, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={cn(
-        "hidden md:flex flex-col backdrop-blur-xl bg-black/40 transition-all duration-300 border-r border-accent/20 h-full",
-        collapsed ? "w-20" : "w-64"
-      )}
+      className={`hidden md:flex flex-col backdrop-blur-xl bg-black/40 transition-all duration-300 border-r border-accent/20 h-full
+        ${collapsed ? "w-20" : "w-64"}
+      `}
       style={{
         boxShadow: "0 0 40px rgba(255, 79, 216, 0.1)",
       }}
@@ -37,10 +35,9 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
         <div className="p-4">
           {/* Logo */}
           <motion.div
-            className={cn(
-              "flex items-center mb-8",
+            className={`flex items-center mb-8 ${
               collapsed ? "justify-center" : "gap-2"
-            )}
+            }`}
             whileHover={{ scale: 1.05 }}
           >
             <motion.div
@@ -155,12 +152,11 @@ function NavItem({
       <motion.div
         whileHover={{ scale: 1.02, x: 4 }}
         whileTap={{ scale: 0.98 }}
-        className={cn(
-          "flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden",
+        className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden ${
           active
             ? "bg-linear-to-r from-accent/20 to-purple-600/20 backdrop-blur-sm border border-accent/40 text-white"
             : "hover:bg-accent/10 hover:border-accent/20 border border-transparent text-gray-300 hover:text-white"
-        )}
+        }`}
         style={{
           boxShadow: active ? "0 0 20px rgba(255, 79, 216, 0.2)" : undefined,
         }}
@@ -171,10 +167,9 @@ function NavItem({
         >
           <Icon
             icon={icon}
-            className={cn(
-              "text-xl transition-colors",
+            className={`text-xl transition-colors ${
               active ? "text-accent" : "group-hover:text-accent"
-            )}
+            }`}
           />
           {!collapsed && (
             <motion.span

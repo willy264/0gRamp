@@ -4,7 +4,6 @@ import { of as ipfsOnlyHashOf } from "ipfs-only-hash";
 import { submitKyc } from "../lib/api";
 import { useAccount } from "wagmi";
 import { Icon } from "@iconify/react";
-import { cn } from "../lib/utils";
 
 interface Props {
   open: boolean;
@@ -228,12 +227,11 @@ export default function KYCModal({ open, onClose }: Props) {
                   whileTap={{ scale: 0.95 }}
                   onClick={onSubmit}
                   disabled={!canSubmit}
-                  className={cn(
-                    "px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300",
-                    canSubmit
+                  className={`px-6 py-2.5 rounded-xl text-sm font-medium transition-all duration-300
+                    ${canSubmit
                       ? "bg-linear-to-r from-accent to-purple-600 text-white hover:shadow-xl hover:shadow-accent/20"
-                      : "bg-gray-800/50 text-gray-500 cursor-not-allowed"
-                  )}
+                      : "bg-gray-800/50 text-gray-500 cursor-not-allowed"}
+                  `}
                 >
                   {submitting ? (
                     <div className="flex items-center gap-2">

@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MobileSidebar from "./MobileSidebar";
-import { cn } from "../lib/utils";
 import { Icon } from "@iconify/react";
 import { useLocation } from "react-router-dom";
 
@@ -76,10 +75,10 @@ export default function Layout({ children }: { children: ReactNode }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className={cn(
-            "flex-1 relative bg-transparent ml-0 transition-all duration-300 flex flex-col",
-            sidebarCollapsed ? "md:ml-20" : "md:ml-64"
-          )}
+          className={`
+            flex-1 relative bg-transparent ml-0 transition-all duration-300 flex flex-col
+            ${sidebarCollapsed ? "md:ml-20" : "md:ml-64"}
+          `}
         >
           <Header />
           <div className="flex-1 p-4">{children}</div>
