@@ -1,0 +1,16 @@
+# Netlify configuration for the frontend app in ./frontend
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+  # Optional: pin Node.js version used by Netlify build image
+  # Netlify default is a current LTS, but we set explicitly for consistency
+[build.environment]
+  NODE_VERSION = "20"
+
+# Single Page App fallback (React Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

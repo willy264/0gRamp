@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - contracts-node
+    restart: unless-stopped
+
+  contracts-node:
+    build:
+      context: ./contracts
+    ports:
+      - "8545:8545"
+    restart: unless-stopped
+
+  contracts-deploy:
+    build:
+      context: ./contracts
+    depends_on:
+      - contracts-node
+    command: sh -c "sleep 8 && npx hardhat run scripts/deploy.js --network docker"
+    restart: "no"
